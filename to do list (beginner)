@@ -1,0 +1,41 @@
+#menu of commands
+def help():
+    print("___to do list menu___")
+    print("type the number of what you want from the list below:")
+    print("1. view tasks ")
+    print("2. add")
+    print("3. remove")
+    print("4. mark as done")
+    print("5. exit")
+
+
+help()
+tasks = []
+
+while True :
+    try:
+        selection = int(input("the number of what you want: "))
+        if selection == 1:
+            if not tasks:
+                print("empty")
+            else:
+                for task, i in enumerate(tasks, 1):
+                    print(f'{task}.{i}')
+        elif selection == 2:
+            tasks.append(input("what the task you want to add: "))
+            help()
+        elif selection == 3:
+            n = int(input("the number of task you want to remove: "))-1
+            tasks.pop(n)
+            help()
+        elif selection == 4 :
+            m = int(input("the number of the task you want to check as done: "))-1
+            tasks[m]+= " DONE! "
+            help()
+        elif selection == 5 :
+            break
+    except ValueError :
+        print("""" hey you've just intered something that i dont actuall understand !! 
+        plz try again 😁""")
+        help()
+
