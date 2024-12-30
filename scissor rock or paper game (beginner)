@@ -1,0 +1,73 @@
+import random
+
+
+# scores of the player and the computer
+p_score = 0
+c_score = 0
+i = 0
+while True : # how many sets you want to play 
+    type_of_the_game = input("""
+how do you wanna play? 
+1. best of five 
+2. best of three 
+""")
+    if type_of_the_game == "1":
+        i = 0
+        break
+    elif type_of_the_game == "2":
+        i = 2
+        break
+    else:
+        print("invalid value")
+        continue
+
+while i < 5 :
+    # the player inputs his play
+    p_play = input("what do you wanna play ( S for scissor / P for paper and / R for rock ): ").lower()
+    if p_play == "s":
+        p_play = "scissor"
+        print("you have choosen scissor")
+    elif p_play == "r":
+        p_play = "rock"
+        print("you have choosen rock")
+    elif p_play == "p":
+        p_play = "paper"
+        print("you have choosen paper")
+    else : print("you have choosen an invalid value !")
+    # the computor chooeses a random play
+    plays = ["scissor","paper","rock"]
+    c_play = random.choice(plays)
+    print(f'computor has choosen {c_play}')
+    # one of them wins
+    if p_play == c_play :
+        result = "drow"
+    elif p_play == "scissor" and c_play == "paper":
+        result = "you won !!"
+        p_score += 1
+    elif p_play == "paper" and c_play == "rock":
+        result = "you won !!"
+        p_score += 1
+    elif p_play == "rock" and c_play == "scissor":
+        result = "you won !!"
+        p_score += 1
+    else :
+        result = "sorry ! you lost "
+        c_score += 1
+    print(result) # showing the result
+    if p_score == 3 or c_score == 3: # break the loop when one of them gets 3 points in best of 5 and 2 in best of 3
+        break
+    elif p_play == 2 and type_of_the_game == "2" :
+        break
+    elif c_score == 2 and type_of_the_game == "2":
+        break
+
+    i += 1
+print(f"""the score of yours: {p_score} 
+the score of the compuotr: {c_score}
+""") # showing the score board
+if p_score > c_score :
+    print("you won the war !!!")
+elif c_score > p_score :
+    print("you lost the war !!!")
+
+
